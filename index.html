@@ -79,7 +79,7 @@
                                 <a href="http://git.ashwanik.in" style="font-size: 25px">All Repositories</a>
                                 <div class="date-outer" style="margin-top: 15%">
                                     <h2 class='date-header' style="display: block; margin-bottom: 5%">
-                                        <span id="repoName">My Repositories
+                                        <span id="repoName">
                                         </span>
                                     </h2>
                                     <div id="repoDescription" style="display: block; margin-bottom: 5%">
@@ -178,7 +178,7 @@
                 var repos = data.data;
                 for (index = 0; index < repos.length; index++) {
                     if (isRepo(pathArray, repos[index].name)) {
-                        $('#repoName').text(repos[index].name);
+                        $('#repoName').text(repos[index].name.toCustomTitleCase());
                         $('#repoDescription').html(repos[index].description);
                         $('#download-zip').attr('href', repos[index].html_url + '/zipball/master');
                         $('#download-tar-gz').attr('href', repos[index].html_url + '/tarball/master');
