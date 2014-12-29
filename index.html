@@ -136,58 +136,7 @@
     </div>
     <!-- #page -->
     <script type="text/javascript" src="http://www.ashwanik.in/Scripts/navigation.js"></script>
-    <script type="text/javascript">
-        function genericGetDeleteAjaxHandler(href, onSucess, onError) {
-            $.ajax({
-                type: 'GET',
-                url: href,
-                dataType: "jsonp",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (onSucess) {
-                        onSucess(data);
-                    }
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    if (onError) {
-                        onError();
-                    }
-                }
-            });
-        }
-        String.prototype.toCustomTitleCase = function () {
-            return this.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-        };
-        function isRepo(pathArray, repoName) {
-            for (var index = 0; index < pathArray.length; index++) {
-                if (pathArray[index].toLowerCase() == repoName.toLowerCase()) {
-                    return true;
-                }
-            }
-            return false;
-        }
+       <script type="text/javascript" src="http://www.ashwanik.in/Scripts/github.js"></script>
 
-        $(document).ready(function () {
-            var pathArray = window.location.pathname.split('/');
-
-            genericGetDeleteAjaxHandler('http://picasaweb.google.com/data/entry/api/user/112259279669324388401?alt=json', function (data) {
-                $('#profilePic').attr("src", data.entry.gphoto$thumbnail.$t);
-            }, null);
-            genericGetDeleteAjaxHandler('https://api.github.com/users/ashwanikumar04/repos', function (data) {
-                var output = "";
-                var repos = data.data;
-                for (index = 0; index < repos.length; index++) {
-                    if (isRepo(pathArray, repos[index].name)) {
-                        $('#repoName').text(repos[index].name.toCustomTitleCase());
-                        $('#repoDescription').html(repos[index].description);
-                        $('#download-zip').attr('href', repos[index].html_url + '/zipball/master');
-                        $('#download-tar-gz').attr('href', repos[index].html_url + '/tarball/master');
-                        $('#view-on-github').attr('href', repos[index].html_url);
-                    }
-                }
-            }, null);
-        });
-
-    </script>
 </body>
 </html>
